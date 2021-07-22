@@ -1,11 +1,19 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import validator from 'validator';
+import { startRegisterWithEmailPasswordName } from '../../actions/auth';
+import { removeErrorAction, setErrorAction } from '../../actions/ui';
 import { useForm } from '../../hooks/useForm';
 
 
 
 export const RegisterScreen = () => {
+
+    const dispatch = useDispatch();
+    const {msgError} = useSelector(state => state.ui);
+    console.log(msgError)
+
     const [formValues, handleInputChange ] = useForm ({
         name: 'Carlos',
         email: 'ckubota54@gmail.com',
@@ -18,21 +26,22 @@ export const RegisterScreen = () => {
         e.preventDefault();
 
         if(isFormValid()) {
-            console.log('formulario correcto');
+            dispatch( startRegisterWithEmailPasswordName(email,password,name) )
         }
         
     }
     const isFormValid = () => {
         if(name.trim().length===0){
-            console.log('name is Required');
+            dispatch( setErrorAction('name is Required'));
             return false;
         }else if( !validator.isEmail( email )){
-            console.log('email is Required');
+            dispatch( setErrorAction('email is Required'));
             return false;
         }else if(password!==password2 && password.length<5) {
-            console.log('password should be at least 6 characters and match each');
+           dispatch( setErrorAction('password should be at least 6 characters and match each'));
             return false;
         }
+        dispatch(removeErrorAction());
         return true;
     }
     
@@ -40,10 +49,14 @@ export const RegisterScreen = () => {
         <>
             <h1 className="auth__title">Register</h1>
             <form onSubmit={handleRegister}>
-                <div
+                { msgError && 
+                (
+                    <div
                 className="auth__alert-error">
-                    Hola Mundo
+                    {msgError}
                 </div>
+                ) 
+                }
                 <input type="text" 
                 placeholder="Name"
                 name="name"

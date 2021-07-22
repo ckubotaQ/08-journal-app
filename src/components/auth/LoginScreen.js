@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { startGoogleLogin, startLoginEmailPassword } from '../../actions/auth';
 
 export const LoginScreen = () => {
+    const {loading} = useSelector(state => state.ui);
     const dispatch = useDispatch();
 
     
@@ -42,6 +43,7 @@ const handleGoogleLogin = () =>{
                 onChange={handleInputChange}
                 />
                 <button
+                disabled={loading}
                 type="submit"
                 className="btn btn-primary btn-block"
                 >
