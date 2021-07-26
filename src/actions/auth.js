@@ -27,7 +27,6 @@ return (dispatch) => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(async ({user})=>{
        await user.updateProfile({displayName:name});
-        console.log(user);
         dispatch(
             login(user.uid, user.displayName)
         )

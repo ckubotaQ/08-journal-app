@@ -31,3 +31,15 @@ export const setNotes = (notes) => ({
  type: types.notesLoad,
  payload: notes   
 })
+export const startSaveNote = (note) => {
+    return async(dispatch, getState) => {
+        const uid = getState().auth.uid;
+        if(!note.url){
+            delete note.url;
+        }
+        const noteToFiresStore = {...note};
+        delete noteToFiresStore.id;
+        await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFiresStore);
+        
+    }
+}
