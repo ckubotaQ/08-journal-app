@@ -48,7 +48,7 @@ export const NotesScreen = () => {
                 &&(
                 <div className="notes__image">
                 <img
-                    src="https://p4.wallpaperbetter.com/wallpaper/263/673/74/the-sky-minimalism-night-stars-wallpaper-preview.jpg"
+                    src={note.url}
                     alt="imagen"
                 />
             </div>
