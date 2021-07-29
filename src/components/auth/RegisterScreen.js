@@ -45,7 +45,9 @@ export const RegisterScreen = () => {
     }
     
     return (
-        <>
+        <div
+        className="animate__animated animate__bounceIn"
+        >
             <h1 className="auth__title">Register</h1>
             <form onSubmit={handleRegister}>
                 { msgError && 
@@ -104,6 +106,6 @@ export const RegisterScreen = () => {
 
 
             </form>
-        </>
+        </div>
     )
 }

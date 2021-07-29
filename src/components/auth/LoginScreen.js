@@ -24,9 +24,14 @@ const handleGoogleLogin = () =>{
     
     
     return (
-        <>
+        <div
+        className="animate__animated animate__bounceIn"
+        >
             <h1 className="auth__title">Login</h1>
-            <form onSubmit={handleLogin}>
+            <form 
+            
+            onSubmit={handleLogin}
+            >
                 <input type="text" 
                 placeholder="email"
                 name="email"
@@ -74,6 +79,6 @@ const handleGoogleLogin = () =>{
 
 
             </form>
-        </>
+        </div>
     )
 }
