@@ -10,7 +10,7 @@ cloudinary.config({
   });
 describe('Pruebas de fileUpload', () => {
     test('debe de cargar un archivo y retornar la URL', async() => {
-        jest.setTimeout(8000)
+        jest.setTimeout(10000)
         const resp = await fetch('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-QW7mWQuFHEHgm3YgvVidvSlufFCL3LJoqg&usqp=CAU');
         const blob = await resp.blob();
         const file = new File([blob],'foto.png');
